@@ -6,7 +6,7 @@ public class Photo {
     private Boolean vertical;
     private ArrayList<String> tags;
 
-    public Photo(Integer index, Boolean vertical, ArrayList<String> tags){
+    public Photo(Integer index, Boolean vertical, ArrayList<String> tags) {
         this.index = index;
         this.vertical = vertical;
         this.tags = new ArrayList<>(tags);
@@ -14,7 +14,7 @@ public class Photo {
 
     @Override
     public String toString() {
-        return "Index: " + this.index + "\nOrientation: " + (vertical ? "Vertical" : "Horizontal") +  "\nTags: " + tags.toString() + "\n";
+        return "Index: " + this.index + "\nOrientation: " + (vertical ? "Vertical" : "Horizontal") + "\nTags: " + tags.toString() + "\n";
     }
 
     public Boolean getVertical() {

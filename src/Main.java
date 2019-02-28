@@ -1,11 +1,14 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     private static String filename = "a_example";
+    // private static String filename = "b_lovely_landscapes";
+    // private static String filename = "c_memorable_moments";
+    // private static String filename = "d_pet_pictures";
+    // private static String filename = "e_shiny_selfies";
 
     public static void main(String[] args) {
         int total;
@@ -35,14 +38,11 @@ public class Main {
 
                 indexRead++;
             }
-            print(total);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         unordered.addAll(pairVerticals(vertical));
-
-        print(unordered);
         saveResult(unordered);
     }
 
@@ -76,20 +76,20 @@ public class Main {
         }
     }
 
-    private static ArrayList<Slide> pairVerticals(ArrayList<Photo> verticals){
+    private static ArrayList<Slide> pairVerticals(ArrayList<Photo> verticals) {
         ArrayList<Slide> unordered = new ArrayList<>();
-        while (!verticals.isEmpty()){
+        while (!verticals.isEmpty()) {
             int max = Integer.MAX_VALUE;
             int indexMin = -1;
 
             for (int i = 1; i < verticals.size(); i++) {
 
                 int diff = checkDiff(verticals.get(0).getTags(), verticals.get(i).getTags());
-                if(diff == 0){
+                if (diff == 0) {
                     // se pueden juntar porque son diferentes
                     indexMin = i;
                     break;
-                } else if(max > diff) {
+                } else if (max > diff) {
                     max = diff;
                     indexMin = i;
                 }
@@ -106,19 +106,19 @@ public class Main {
         return unordered;
     }
 
-    private static ArrayList<Slide> orderUnordered(ArrayList<Slide> unordered){
+    private static ArrayList<Slide> orderUnordered(ArrayList<Slide> unordered) {
 
         ArrayList<Slide> ordered = new ArrayList<>();
         ordered.add(unordered.get(0));
         unordered.remove(0);
-        while (!unordered.isEmpty()){
+        while (!unordered.isEmpty()) {
             int interest = Integer.MIN_VALUE;
             int indexMax = -1;
 
             for (int i = 1; i < unordered.size(); i++) {
 
-                int minInterest = checkMin(ordered.get(ordered.size()-1), unordered.get(i));
-                if(interest < minInterest) {
+                int minInterest = checkMin(ordered.get(ordered.size() - 1), unordered.get(i));
+                if (interest < minInterest) {
                     interest = minInterest;
                     indexMax = i;
                 }
@@ -132,14 +132,14 @@ public class Main {
 
     }
 
-    private static int checkDiff(ArrayList<String> one, ArrayList<String> two){
+    private static int checkDiff(ArrayList<String> one, ArrayList<String> two) {
         ArrayList<String> aux = new ArrayList<>(one);
         aux.removeAll(two);
         return one.size() - aux.size();
     }
 
-    private static int checkMin(Slide one, Slide two){
-        int[] numbers= new int[3];
+    private static int checkMin(Slide one, Slide two) {
+        int[] numbers = new int[3];
         ArrayList<String> aux = new ArrayList<>(one.getTags());
         aux.removeAll(two.getTags());
         // common tags
