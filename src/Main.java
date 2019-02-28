@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     private static String filename = "a_example";
@@ -48,7 +49,15 @@ public class Main {
         StringBuilder output = new StringBuilder();
         output.append(orderedSlides.size() + "\n");
         orderedSlides.forEach((slide -> {
-            slide.getPhotos().forEach(photo -> output.append(photo.getIndex()).append("\n"));
+            AtomicInteger num = new AtomicInteger();
+            slide.getPhotos().forEach(photo -> {
+                output.append(photo.getIndex());
+                if (num.get() == 0) {
+                    output.append(" ");
+                }
+                num.getAndIncrement();
+            });
+            output.append("\n");
         }));
 
 
