@@ -20,6 +20,10 @@ public class Slide {
         return photos;
     }
 
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
     public void setPhotos(ArrayList<Photo> photos) {
         this.photos = photos;
     }

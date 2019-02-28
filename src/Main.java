@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -9,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         int total;
         ArrayList<Slide> unordered = new ArrayList<>();
+        ArrayList<Slide> ordered = new ArrayList<>();
         ArrayList<Photo> vertical = new ArrayList<>();
         ArrayList<Slide> orderedSlides = new ArrayList<>();
 
@@ -104,16 +106,51 @@ public class Main {
         return unordered;
     }
 
+    private static ArrayList<Slide> orderUnordered(ArrayList<Slide> unordered){
+
+        ArrayList<Slide> ordered = new ArrayList<>();
+        ordered.add(unordered.get(0));
+        unordered.remove(0);
+        while (!unordered.isEmpty()){
+            int interest = Integer.MIN_VALUE;
+            int indexMax = -1;
+
+            for (int i = 1; i < unordered.size(); i++) {
+
+                int minInterest = checkMin(ordered.get(ordered.size()-1), unordered.get(i));
+                if(interest < minInterest) {
+                    interest = minInterest;
+                    indexMax = i;
+                }
+
+            }
+            // se pueden juntar porque son diferentes
+            ordered.add(unordered.get(indexMax));
+            unordered.remove(indexMax);
+        }
+        return ordered;
+
+    }
+
     private static int checkDiff(ArrayList<String> one, ArrayList<String> two){
         ArrayList<String> aux = new ArrayList<>(one);
         aux.removeAll(two);
         return one.size() - aux.size();
     }
 
-    private static int checkMin(ArrayList<String> one, ArrayList<String> two){
-        ArrayList<String> aux = new ArrayList<>(one);
-        aux.removeAll(two);
-        return one.size() - aux.size();
+    private static int checkMin(Slide one, Slide two){
+        int[] numbers= new int[3];
+        ArrayList<String> aux = new ArrayList<>(one.getTags());
+        aux.removeAll(two.getTags());
+        // common tags
+        numbers[0] = one.getTags().size() - aux.size();
+        // in one but not in two
+        numbers[1] = aux.size();
+        // in two but not in one
+        numbers[2] = two.getTags().size() - numbers[0];
+
+        Arrays.sort(numbers);
+        return numbers[0];
     }
 
     private static void print(Object object) {
