@@ -41,7 +41,7 @@ public class Main {
         writeToOutput(output.toString());
 
         String slices = getSlices(map);
-        writeToOutput(slices);
+        // writeToOutput(slices);
     }
 
     private static String getSlices(boolean[][] map) {
