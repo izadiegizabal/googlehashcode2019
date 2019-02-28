@@ -40,14 +40,14 @@ public class Main {
             e.printStackTrace();
         }
 
-        pairVerticals(vertical).forEach(slide -> unordered.add(slide));
+        unordered.addAll(pairVerticals(vertical));
 
         saveResult(unordered);
     }
 
     private static void saveResult(ArrayList<Slide> orderedSlides) {
         StringBuilder output = new StringBuilder();
-        output.append(orderedSlides.size() + "\n");
+        output.append(orderedSlides.size()).append("\n");
         orderedSlides.forEach((slide -> {
             AtomicInteger num = new AtomicInteger();
             slide.getPhotos().forEach(photo -> {
