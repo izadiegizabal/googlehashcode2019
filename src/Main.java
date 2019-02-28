@@ -6,8 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main {
     // private static String filename = "a_example";
      // private static String filename = "b_lovely_landscapes";
-    // private static String filename = "c_memorable_moments";
-     private static String filename = "d_pet_pictures";
+    private static String filename = "c_memorable_moments";
+    // private static String filename = "d_pet_pictures";
     // private static String filename = "e_shiny_selfies";
 
     public static void main(String[] args) {
@@ -111,6 +111,27 @@ public class Main {
         ArrayList<Slide> ordered = new ArrayList<>();
         ordered.add(unordered.get(0));
         unordered.remove(0);
+        int stop=1;
+
+        switch (filename){
+            case "a_example":
+                stop=Integer.MAX_VALUE;
+                break;
+            case "b_lovely_landscapes":
+                stop=1;
+                break;
+            case "c_memorable_moments":
+                stop=Integer.MAX_VALUE;
+                break;
+            case "d_pet_pictures":
+                stop=5;
+                break;
+            case "e_shiny_selfies":
+                stop=8;
+                break;
+        }
+        
+
         while (!unordered.isEmpty()) {
             int interest = Integer.MIN_VALUE;
             int indexMax = -1;
@@ -121,7 +142,9 @@ public class Main {
                     interest = minInterest;
                     indexMax = i;
                 }
-                if ((interest >= ordered.get(ordered.size() - 1).getTags().size() -1) || interest > 5 ) {
+
+
+                if ((interest >= ordered.get(ordered.size() - 1).getTags().size() -1) || interest > stop ) {
                     break;
                 }
             }
