@@ -39,6 +39,8 @@ public class Main {
             e.printStackTrace();
         }
 
+        pairVerticals(vertical).forEach(slide -> unordered.add(slide));
+
         saveResult(unordered);
     }
 
@@ -67,32 +69,41 @@ public class Main {
     private static ArrayList<Slide> pairVerticals(ArrayList<Photo> verticals){
         ArrayList<Slide> unordered = new ArrayList<>();
         while (!verticals.isEmpty()){
+            int max = Integer.MAX_VALUE;
+            int indexMin = -1;
+
             for (int i = 1; i < verticals.size(); i++) {
-                if(checkArrays(verticals.get(0).getTags(), verticals.get(i).getTags())){
+
+                int diff = checkDiff(verticals.get(0).getTags(), verticals.get(i).getTags());
+                if(diff == 0){
                     // se pueden juntar porque son diferentes
-                    ArrayList<Photo> photos = new ArrayList<>();
-                    photos.add(verticals.get(0));
-                    photos.add(verticals.get(i));
-                    verticals.remove(0);
-                    verticals.remove(i);
-                    unordered.add(new Slide(photos));
+                    indexMin = i;
                     break;
+                } else if(max > diff) {
+                    max = diff;
+                    indexMin = i;
                 }
+
             }
+            // se pueden juntar porque son diferentes
+            ArrayList<Photo> photos = new ArrayList<>();
+            photos.add(verticals.get(indexMin));
+            photos.add(verticals.get(0));
+            verticals.remove(indexMin);
+            verticals.remove(0);
+            unordered.add(new Slide(photos));
         }
         return unordered;
     }
 
-    private static Boolean checkArrays(ArrayList<String> one, ArrayList<String> two){
-
+    private static int checkDiff(ArrayList<String> one, ArrayList<String> two){
         ArrayList<String> aux = new ArrayList<>(one);
         aux.removeAll(two);
-        return (one.size() == aux.size()) ? true : false;
+        return one.size() - aux.size();
     }
 
     private static void print(Object object) {
         System.out.println(object);
     }
-
 
 }
