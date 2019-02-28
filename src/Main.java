@@ -9,6 +9,7 @@ public class Main {
         int total;
         ArrayList<Slide> unordered = new ArrayList<>();
         ArrayList<Photo> vertical = new ArrayList<>();
+        ArrayList<Slide> orderedSlides = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader("out/production/googlehashcode2019/" + filename + ".txt"))) {
             String line;
@@ -38,6 +39,18 @@ public class Main {
             e.printStackTrace();
         }
 
+        saveResult(unordered);
+    }
+
+    private static void saveResult(ArrayList<Slide> orderedSlides) {
+        StringBuilder output = new StringBuilder();
+        output.append(orderedSlides.size() + "\n");
+        orderedSlides.forEach((slide -> {
+            slide.getPhotos().forEach(photo -> output.append(photo.getIndex()).append("\n"));
+        }));
+
+
+        writeToOutput(output.toString());
     }
 
     private static void writeToOutput(String outputString) {
@@ -54,4 +67,6 @@ public class Main {
     private static void print(Object object) {
         System.out.println(object);
     }
+
+
 }
