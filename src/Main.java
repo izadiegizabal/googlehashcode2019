@@ -64,6 +64,32 @@ public class Main {
         }
     }
 
+    private static ArrayList<Slide> pairVerticals(ArrayList<Photo> verticals){
+        ArrayList<Slide> unordered = new ArrayList<>();
+        while (!verticals.isEmpty()){
+            for (int i = 1; i < verticals.size(); i++) {
+                if(checkArrays(verticals.get(0).getTags(), verticals.get(i).getTags())){
+                    // se pueden juntar porque son diferentes
+                    ArrayList<Photo> photos = new ArrayList<>();
+                    photos.add(verticals.get(0));
+                    photos.add(verticals.get(i));
+                    verticals.remove(0);
+                    verticals.remove(i);
+                    unordered.add(new Slide(photos));
+                    break;
+                }
+            }
+        }
+        return unordered;
+    }
+
+    private static Boolean checkArrays(ArrayList<String> one, ArrayList<String> two){
+
+        ArrayList<String> aux = new ArrayList<>(one);
+        aux.removeAll(two);
+        return (one.size() == aux.size()) ? true : false;
+    }
+
     private static void print(Object object) {
         System.out.println(object);
     }
