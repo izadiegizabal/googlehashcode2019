@@ -4,7 +4,7 @@ public class Slide {
 
     private ArrayList<Photo> photos;
 
-    public Slide(ArrayList<Photo> photos){
+    public Slide(ArrayList<Photo> photos) {
         this.photos = new ArrayList<>(photos);
     }
 
@@ -15,5 +15,10 @@ public class Slide {
 
     public void setPhotos(ArrayList<Photo> photos) {
         this.photos = photos;
+    }
+
+    @Override
+    public String toString() {
+        return this.photos.toString();
     }
 }

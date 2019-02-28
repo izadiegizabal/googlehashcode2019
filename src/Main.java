@@ -3,31 +3,37 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
-    private static String filename = "b_small";
+    private static String filename = "a_example";
 
     public static void main(String[] args) {
         int total;
-        ArrayList<Slide> unordered = new ArrayList<Slide>();
-        ArrayList<Photo> vertical = new ArrayList<Photo>();
+        ArrayList<Slide> unordered = new ArrayList<>();
+        ArrayList<Photo> vertical = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("out/production/googlehashcode2019/" + filename + ".in"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("out/production/googlehashcode2019/" + filename + ".txt"))) {
             String line;
             line = br.readLine();
 
             total = Integer.parseInt(line);
 
-            int indexRead = -1;
+            int indexRead = 0;
             while ((line = br.readLine()) != null) {
-                String [] params = line.split("\\s+");
-                ArrayList<String> tags = new ArrayList<>(Arrays.asList(params).subList(0, Integer.parseInt(params[1])));
-                if (params[0].equals("H")){
-                    unordered.add(new Slide(new ArrayList<Photo>(new Photo(indexRead, false, params))));
+                String[] params = line.split("\\s+");
+                ArrayList<String> tags = new ArrayList<>(Arrays.asList(params).subList(2, 2 + Integer.parseInt(params[1])));
+                if (params[0].equals("H")) {
+                    Photo photo = new Photo(indexRead, false, tags);
+                    ArrayList<Photo> photos = new ArrayList<>();
+                    photos.add(photo);
+                    unordered.add(new Slide(photos));
                 } else {
-                    vertical.add(new Photo(indexRead, true, params));
+                    vertical.add(new Photo(indexRead, true, tags));
                 }
 
                 indexRead++;
             }
+            print(total);
+            print(unordered);
+            print(vertical);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +43,7 @@ public class Main {
     private static void writeToOutput(String outputString) {
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter("out/production/googlehashcode2019/output/" + filename + ".out"));
+            writer = new BufferedWriter(new FileWriter("out/production/googlehashcode2019/output/" + filename + ".out.txt"));
             writer.write(outputString);
             writer.close();
         } catch (IOException e) {

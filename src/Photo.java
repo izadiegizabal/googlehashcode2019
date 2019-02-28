@@ -14,7 +14,7 @@ public class Photo {
 
     @Override
     public String toString() {
-        return "Index: " + this.index + "\nOrientation: " + (vertical ? "Vertical" : "Horizontal") +  "\nTags: " + tags.toString();
+        return "Index: " + this.index + "\nOrientation: " + (vertical ? "Vertical" : "Horizontal") +  "\nTags: " + tags.toString() + "\n";
     }
 
     public Boolean getVertical() {
