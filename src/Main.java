@@ -121,11 +121,14 @@ public class Main {
                     interest = minInterest;
                     indexMax = i;
                 }
+                if ((interest >= ordered.get(ordered.size() - 1).getTags().size() -1) || interest > 5 ) {
+                    break;
+                }
             }
             // se pueden juntar porque son diferentes
             ordered.add(unordered.get(indexMax));
             unordered.remove(indexMax);
-            System.out.println(indexMax);
+            System.out.println(unordered.size());
         }
         return ordered;
 
