@@ -3,9 +3,16 @@ import java.util.ArrayList;
 public class Slide {
 
     private ArrayList<Photo> photos;
+    private ArrayList<String> tags;
 
     public Slide(ArrayList<Photo> photos) {
         this.photos = new ArrayList<>(photos);
+        tags = new ArrayList<>();
+        this.photos.forEach(photo -> photo.getTags().forEach(tag -> {
+            if (!tags.contains(tag)) {
+                tags.add(tag);
+            }
+        }));
     }
 
 
@@ -19,6 +26,10 @@ public class Slide {
 
     @Override
     public String toString() {
-        return this.photos.toString();
+        String indexes = "";
+        for (Photo photo : this.photos) {
+            indexes += photo.getIndex() + " ";
+        }
+        return "Indexes: " + indexes + "Tags: " + this.tags;
     }
 }

@@ -34,14 +34,13 @@ public class Main {
                 indexRead++;
             }
             print(total);
-            print(unordered);
-            print(vertical);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         unordered.addAll(pairVerticals(vertical));
 
+        print(unordered);
         saveResult(unordered);
     }
 
@@ -106,6 +105,12 @@ public class Main {
     }
 
     private static int checkDiff(ArrayList<String> one, ArrayList<String> two){
+        ArrayList<String> aux = new ArrayList<>(one);
+        aux.removeAll(two);
+        return one.size() - aux.size();
+    }
+
+    private static int checkMin(ArrayList<String> one, ArrayList<String> two){
         ArrayList<String> aux = new ArrayList<>(one);
         aux.removeAll(two);
         return one.size() - aux.size();
