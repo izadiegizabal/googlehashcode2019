@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
-    private static String filename = "a_example";
-    // private static String filename = "b_lovely_landscapes";
+    // private static String filename = "a_example";
+     // private static String filename = "b_lovely_landscapes";
     // private static String filename = "c_memorable_moments";
-    // private static String filename = "d_pet_pictures";
+     private static String filename = "d_pet_pictures";
     // private static String filename = "e_shiny_selfies";
 
     public static void main(String[] args) {
@@ -43,7 +43,7 @@ public class Main {
         }
 
         unordered.addAll(pairVerticals(vertical));
-        saveResult(unordered);
+        saveResult(orderUnordered(unordered));
     }
 
     private static void saveResult(ArrayList<Slide> orderedSlides) {
@@ -115,18 +115,17 @@ public class Main {
             int interest = Integer.MIN_VALUE;
             int indexMax = -1;
 
-            for (int i = 1; i < unordered.size(); i++) {
-
+            for (int i = 0; i < unordered.size(); i++) {
                 int minInterest = checkMin(ordered.get(ordered.size() - 1), unordered.get(i));
                 if (interest < minInterest) {
                     interest = minInterest;
                     indexMax = i;
                 }
-
             }
             // se pueden juntar porque son diferentes
             ordered.add(unordered.get(indexMax));
             unordered.remove(indexMax);
+            System.out.println(indexMax);
         }
         return ordered;
 
