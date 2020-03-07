@@ -9,6 +9,8 @@ As you can imagine, this is not the most efficient way of solving the problem, b
 
 Thanks to this we were able to finish first of our Hub, 24th in Spain and 885th Worldwide, top 6.2% in Spain and 13.3% globally, where more than 6640 teams competed! Taking into account it was our first code challenge, we are really happy with the results! We had a really good time and we hope to repeat the experience!
 
+For the Extended Round the results improved and we ended up 7th in Spain (top 1.8%) and 115th globally (**top 1.7%**)!
+
 With this code we were able to achieve over 700K Points in the Online Qualification Round.
 ![700K points proof](https://i.imgur.com/WJGTtM2.png)
 
@@ -19,6 +21,5 @@ And over 1M Points in the Extended Round thanks to extra time time to run the pr
 ![24th of Spain](https://i.imgur.com/iUN5U4j.png)
 ![885th worldwide](https://i.imgur.com/CLiBUC9.png)
 
-For the Extended Round the results improved and we ended up 7th in Spain (top 1.8%) and 115th globally (top **1.7%**)!
 ![7th in Spain](https://i.imgur.com/gRd7Fiq.png)
 ![115th globally](https://i.imgur.com/js3e2KS.png)
