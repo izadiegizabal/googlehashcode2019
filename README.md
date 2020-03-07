@@ -1,5 +1,5 @@
 # googlehashcode2019
-Our Google Hash Code 2019 Challenge Solution! With it, we were able to end in the top 13.3% ([885th/6640](https://codingcompetitions.withgoogle.com/hashcode/archive/2019)), not bad for our first coding competition!
+Our Google Hash Code 2019 Challenge Solution! With it, we were able to end in the **top 13.3%** ([885th/6640](https://codingcompetitions.withgoogle.com/hashcode/archive/2019)), not bad for our first coding competition!
 
 Regarding the developed algorithm, we first join the vertical photos in slides based on the least amount of tags in common they have, in order to have more matching posibilities with the horizontal slides.
 
